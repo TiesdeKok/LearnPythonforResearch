@@ -8,7 +8,7 @@
 # **Python version:** Python 3.5  
 # **License:** MIT License  
 
-# # Instruction
+# ## Introduction
 
 # With Python you can open and save a wide variety of files.  
 # There are often multiple ways to open a particular file format, the examples below are in my experience the most convenient
@@ -17,7 +17,7 @@
 
 # ## Imports
 
-# In[1]:
+# In[30]:
 
 import os
 import pandas as pd
@@ -27,7 +27,7 @@ import json
 
 # The below is for convenience so we can type `join` instead of `os.path.join`
 
-# In[2]:
+# In[31]:
 
 from os.path import join
 
@@ -43,7 +43,7 @@ from os.path import join
 
 # Our examples files are in the `example_data` folder so we can set the directory as such:
 
-# In[19]:
+# In[32]:
 
 data_path = join(os.getcwd(), 'example_data')
 
@@ -52,13 +52,13 @@ data_path = join(os.getcwd(), 'example_data')
 
 # *Note:* this will ignore files in sub-folders!
 
-# In[4]:
+# In[33]:
 
 filenames = os.listdir(data_path)
 filenames[:2] # show first two items
 
 
-# In[5]:
+# In[34]:
 
 filepaths = [join(data_path, filename) for filename in filenames]
 filepaths[:2] # show first two items
@@ -67,7 +67,7 @@ filepaths[:2] # show first two items
 # We can alternatively use `glob` as this directly allows to include pathname matching.  
 # For example if we only want Excel `.xlsx` files:
 
-# In[6]:
+# In[35]:
 
 glob(join(data_path, '*.xlsx'))
 
@@ -76,7 +76,7 @@ glob(join(data_path, '*.xlsx'))
 
 # If the folder contains multiple levels we need to either use `os.walk()` or `glob`:
 
-# In[12]:
+# In[36]:
 
 folder = os.getcwd()
 filepaths = []
@@ -88,7 +88,7 @@ filepaths[:2]
 
 # Personally, using `glob` yields cleaner code although it is a bit harder to understand:
 
-# In[16]:
+# In[37]:
 
 filepaths_glob = glob(join(folder, '**/*'), recursive=True)
 filepaths_glob[:2]
@@ -106,20 +106,20 @@ filepaths_glob[:2]
 
 # ### Opening a file
 
-# In[28]:
+# In[38]:
 
 with open(join(data_path, 'text_sample.txt'), 'r') as file:
     file_content = file.read()
 
 
-# In[29]:
+# In[39]:
 
 print(file_content)
 
 
 # ### Writing to a file
 
-# In[33]:
+# In[40]:
 
 with open(join(data_path, 'text_sample.txt'), 'w+') as file:
     file.write('Learning Python is great. \nGood luck!')
@@ -130,7 +130,7 @@ with open(join(data_path, 'text_sample.txt'), 'w+') as file:
 # Note that I am using a `with` statement when opening files.  
 # Another method is to use `open` and `close`:
 
-# In[34]:
+# In[41]:
 
 f = open(join(data_path, 'text_sample.txt'), 'r')
 file_content = f.read()
@@ -142,7 +142,7 @@ f.close()
 
 # ### Looping over indexed files
 
-# In[36]:
+# In[42]:
 
 text_files = glob(join(data_path, '*.txt'))
 text_list = []
@@ -152,7 +152,7 @@ for i in text_files:
         text_list.append(f.read())
 
 
-# In[37]:
+# In[43]:
 
 text_list
 
@@ -163,7 +163,7 @@ text_list
 
 # ### Open Excel file
 
-# In[38]:
+# In[44]:
 
 excel_file = pd.read_excel(join(data_path, 'excel_sample.xlsx'))
 
@@ -175,7 +175,7 @@ excel_file = pd.read_excel(join(data_path, 'excel_sample.xlsx'))
 
 # ### Save Excel file
 
-# In[40]:
+# In[45]:
 
 excel_file.to_excel(join(data_path, 'excel_sample.xlsx'))
 
@@ -191,7 +191,7 @@ excel_file.to_excel(join(data_path, 'excel_sample.xlsx'))
 
 # ### Open CSV file
 
-# In[41]:
+# In[46]:
 
 csv_file = pd.read_csv(join(data_path, 'csv_sample.csv'), sep=',')
 
@@ -200,7 +200,7 @@ csv_file = pd.read_csv(join(data_path, 'csv_sample.csv'), sep=',')
 
 # ### Save CSV file
 
-# In[42]:
+# In[47]:
 
 csv_file.to_csv(join(data_path, 'csv_sample.csv'), sep=',')
 
@@ -211,7 +211,7 @@ csv_file.to_csv(join(data_path, 'csv_sample.csv'), sep=',')
 
 # ### Open Stata file
 
-# In[43]:
+# In[48]:
 
 stata_file = pd.read_stata(join(data_path, 'stata_sample.dta'))
 
@@ -220,7 +220,7 @@ stata_file = pd.read_stata(join(data_path, 'stata_sample.dta'))
 
 # ### Save Stata file
 
-# In[44]:
+# In[49]:
 
 stata_file.to_stata(join(data_path, 'stata_sample.dta'))
 
@@ -248,21 +248,21 @@ stata_file.to_stata(join(data_path, 'stata_sample.dta'))
 
 # ### Read JSON file to dataframe
 
-# In[45]:
+# In[50]:
 
 json_df = pd.read_json(join(data_path, 'json_sample.json'))
 
 
 # ### Save dataframe to JSON file
 
-# In[49]:
+# In[51]:
 
 json_df.to_json(join(data_path, 'json_sample.json'))
 
 
 # ## JSON files using the `JSON` module
 
-# **Read:**
+# **Read JSON:**
 
 # In[52]:
 
@@ -270,9 +270,9 @@ with open(join(data_path, 'json_sample.json'), 'r') as f:
     json_data = json.load(f)
 
 
-# **Write:**
+# **Write JSON:**
 
-# In[51]:
+# In[53]:
 
 with open(join(data_path, 'json_sample.json'), 'w') as f:
     json.dump(json_data, f)
@@ -313,6 +313,8 @@ with open(join(data_path, 'json_sample.json'), 'w') as f:
 # %timeit test_csv_read()
 # 1 loops, best of 3: 620 ms per loop
 # ```
+# 
+# The downside of `HDF` is that the filesizes tend to be larger. However, storage space is cheap, working memory isn't.
 
 # ### Read HDF files using Pandas
 
@@ -334,18 +336,43 @@ hdf_df.to_hdf(join(data_path, 'hdf_sample.h5'), 'hdf_sample')
 
 # http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.to_hdf.html
 
-# ### Using HDF with big data that does not fit into memory
+# ## HDF files for general Python objects
 
-# One big advantage of `HDF` is that it does not require all the data to be load into memory at once. 
+# The above works great for Python dataframes, but sometimes you want to save general Python objects to HDF files as well.  
+# Personally, I use a package called `deepdish`:  
+# http://deepdish.readthedocs.io/en/latest/api_io.html
 # 
-# See the page below for a very comprehensive overview:  
-# http://pandas.pydata.org/pandas-docs/stable/io.html#io-hdf5
+# It is possible to install this by running `pip install deepdish` in the command line. 
+
+# In[56]:
+
+import deepdish as dd
+
+
+# In[58]:
+
+test_data = {'a' : 1, 'b' : 2, 'c' : 3, 'd': 4, 'e' : 5}
+
+
+# Save data using `deepdish`:
+
+# In[59]:
+
+dd.io.save(join(data_path, 'dd_example.h5'), test_data)
+
+
+# Load data using `deepdish`:
+
+# In[60]:
+
+test_data = dd.io.load(join(data_path, 'dd_example.h5'))
+
 
 # # Code to generate examples files
 
 # Dictionary with random data:
 
-# In[19]:
+# In[24]:
 
 raw_data = {'foreign':{1:'Domestic',2:'Domestic',3:'Domestic',6:'Domestic',7:'Domestic',8:'Domestic',9:'Domestic',14:'Domestic',21:'Domestic',23:'Domestic',24:'Domestic',30:'Domestic',31:'Domestic',33:'Domestic',37:'Domestic',38:'Domestic',43:'Domestic',48:'Domestic',50:'Domestic',51:'Domestic',53:'Foreign',56:'Foreign',57:'Foreign',66:'Foreign',70:'Foreign'},
             'make':{1:'AMCPacer',2:'AMCSpirit',3:'BuickCentury',6:'BuickOpel',7:'BuickRegal',8:'BuickRiviera',9:'BuickSkylark',14:'Chev.Impala',21:'DodgeMagnum',23:'FordFiesta',24:'FordMustang',30:'Merc.Marquis',31:'Merc.Monarch',33:'Merc.Zephyr',37:'OldsDelta88',38:'OldsOmega',43:'Plym.Horizon',48:'Pont.GrandPrix',50:'Pont.Phoenix',51:'Pont.Sunbird',53:'AudiFox',56:'Datsun210',57:'Datsun510',66:'ToyotaCelica',70:'VWDiesel'},
@@ -355,7 +382,7 @@ raw_data = {'foreign':{1:'Domestic',2:'Domestic',3:'Domestic',6:'Domestic',7:'Do
 
 # Convert dictionary to Pandas dataframe for easy saving
 
-# In[20]:
+# In[25]:
 
 df_data = pd.DataFrame(raw_data)
 df_data.head()
@@ -363,18 +390,18 @@ df_data.head()
 
 # Save the different files
 
-# In[ ]:
+# In[26]:
 
 data_path = os.path.join(os.getcwd(), 'example_data')
 
 
-# In[22]:
+# In[27]:
 
 with open(os.path.join(data_path, 'text_sample.txt'), 'w+') as file:
     file.write('Learning Python is great. \nGood luck!')
 
 
-# In[32]:
+# In[28]:
 
 df_data.to_excel(os.path.join(data_path, 'excel_sample.xlsx'))
 df_data.to_csv(os.path.join(data_path, 'csv_sample.csv'))
@@ -382,9 +409,9 @@ df_data.to_stata(os.path.join(data_path, 'stata_sample.dta'))
 df_data.to_hdf(os.path.join(data_path, 'hdf_sample.h5'), 'hdf_sample')
 
 
-# In[33]:
+# In[29]:
 
 df_data.to_json(os.path.join(data_path, 'json_sample.json'))
 
 
-# **Note:** pandas does not have a `.to_sas` function
+# **Note:** pandas does not have a `.to_sas()` function
