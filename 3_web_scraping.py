@@ -1,190 +1,242 @@
 
 # coding: utf-8
 
-# # python hands-on session
+# # Web scraping
 
-# By: Ties de Kok  
-# Version: Python 2.7 (see any notes for Python 3.5)
+# **Author:** Ties de Kok ([Personal Website](www.tiesdekok.com]))  
+# **Last updated:** 2 Oct 2017  
+# **Python version:** Python 3.5  
+# **License:** MIT License  
 
-# 1. handling files
-# 2. data handling
-# 3. **web scraping**
-# 4. text mining
-# 5. (interactive) visualisations
+# ## <i>Introduction</i>
 
-# In[59]:
-
-from IPython.display import Image, display
-
-
-# ## Introduction
-
-# **Note:** In this notebook I will often build upon chapter 11 of 'automate the boring stuff' which is available here:  
-# https://automatetheboringstuff.com/chapter11/
-
-# Extracting information from webpages consists of four steps:
-# 1. Construct or retrieve the URL
-# 2. Have Python visit the URL and download the source of the page (often HTML)
-# 3. If needed, parse the source-file
-# 4. Extract the information you need
-
-# Depending on the website it can be very easy or very hard to extract the information.  
+# Depending on the website it can be very easy or very hard to extract the information you need.  
 # 
 # Websites can be classified into roughly two categories:
 # 1. Computer oriented webpage: API (Application Program Interface)
 # 2. Human oriented webpage: regular website
 # 
-# The first category is always the preferred option, however, it is not always available.
+# Option 1 (an API) is designed to be approach programmatically so extracting the data you need is usually easy. However, in many cases you don't have an API available so you might have to resort to scraping the regular website (option 2). 
+# 
+# It is worth noting that option 2 can put a lot of strain on the server of the website. Therefore, only resort to option 2 if there is no API available, and if you decide to scrape the regular website make sure to do so in a way that is as polite as possible!
+# 
+# **This notebook is structured as follows:**
+# 
+# 1. Using the `requests` package to interact with a website or API
+# 2. Extract data using an API
+# 3. Extract data from a regular website using regular expressions
+# 4. Extract data from a regular website by parsing it using LXML
+# 5. Extract data from Javascript heavy websites using Selenium
+# 6. Advanced webscraping using Scrapy
 
-# ## Opening a website
+# **Note:** In this notebook I will often build upon chapter 11 of 'automate the boring stuff' which is available here:  
+# https://automatetheboringstuff.com/chapter11/
 
-# We will use the `requests` module, the book 'automate the boring stuff' mentions it well:
-# > The requests module lets you easily download files from the Web without having to worry about complicated issues such as network errors, connection problems, and data compression. The requests module doesn’t come with Python, so you’ll have to install it first. **From the command line, run pip install requests.**
+# ## <span style="text-decoration: underline;">Requests package</span>
+# 
 
-# In the initial example I used the build-in `urllib2` module but for anything besides the simplest operations `requests` is a lot better
+# We will use the `requests` module. I like the description mentioned in the book 'automate the boring stuff':
+# > The requests module lets you easily download files from the Web without having to worry about complicated issues such as network errors, connection problems, and data compression. The requests module doesn’t come with Python, so you’ll have to install it first. **From the command line, run:**   
+# 
+# > `pip install requests`
 
 # In[2]:
 
 import requests
 
 
-# ### Downloading a web page
+# *Note:* If you google around on webscraping with Python you will probably also find mentions of the `urllib2` package. I highly recommend to use `requests` as it will make your life a lot easier for most tasks. 
 
-# In[3]:
+# ### Basics of  the `requests` package
+
+# The `requests` package takes a URL and allows you to interact with the contents. For example:
+
+# In[4]:
 
 res = requests.get('https://automatetheboringstuff.com/files/rj.txt')
 
 
-# In[8]:
+# In[11]:
 
-type(res.text)
-
-
-# In[5]:
-
-len(res.text)
+print(res.text[7:250])
 
 
-# In[6]:
+# The `requests` package is incredibly useful because it deals with a lot of connection related issues automatically. We can for example check whether the webpage returned any errors relatively easily:
 
-print(res.text[:250])
+# In[12]:
+
+res.status_code 
 
 
-# *Note:* The weird characters are due to Unicode, Python 2.7 has issues with Unicode, Python 3.5 a lot less.
+# In[14]:
 
-# ## Using an API
+requests.get('https://automatetheboringstuff.com/thisdoesnotexist.txt').status_code
 
-# Before we do any web-scraping it is important to check whether there is an API that we can use instead of the regular website.  
+
+# You can find a list of most common HTTP Status Codes here:  
+# https://www.smartlabsoftware.com/ref/http-status-codes.htm
+
+# ## <u>Extract data using an API</u>
+
 # APIs are designed to be approached and 'read' by computers, whereas regular webpages are designed for humans not computers.  
 # 
 # An API, in a simplified sense, has two characteristics:
-# 1. The URL contains parameters that formulate a request for information
-# 2. The response by the server is in a machine-readible format.
+# 1. A request is made using an URL that contains parameters specifiying the information requested
+# 2. A response by the server in a machine-readable format. 
 # 
-# The formats are usually either:
-# - Plain text
+# The machine-readable formats are usually either:
 # - JSON
 # - XML
+# - (sometimes plain text)
 
-# ### Example
+# ### Demonstration using an example
 
-# Let's say we want to get rain radar data for Tilburg from http://www.buienradar.nl/  
+# Let's say, for the sake of an example, that we are interested in retrieving current and historical Bitcoin prices.  
 # 
-# We could go to the website using our browser and find the rainradar for Tilburg:  
-# http://www.buienradar.nl/inzoom?lat=51.56&lon=5.09
+# After a quick Google search we find that this information is available on https://www.coindesk.com/price/.
 # 
-# But, how can we actually extract the information that is on that webpage?  
-# We could spend a lot of time writing a program that can 'read' the page, but maybe there is an easier way!  
+# We could go about and scrape this webpage directly, but as a responble web-scraper you look around and notice that coindesk fortunately offers an API that we can use to retrieve the information that we need. The details of the API are here:
 # 
-# Googling for `Buienradar API` leads us to this webpage: http://gratisweerdata.buienradar.nl/ --> an API:  
+# https://www.coindesk.com/api/
 # 
-# http://gps.buienradar.nl/getrr.php?lat=51.56&lon=5.09 
+# There appear to be two API calls that we are interested in:
 # 
-# This page is hard to read for us as humans, but a computer can 'read' this with ease. 
+# 1) We can retrieve the current bitcoin price using: https://api.coindesk.com/v1/bpi/currentprice.json  
+# 2) We can retrieve historical bitcoin prices using: https://api.coindesk.com/v1/bpi/historical/close.json
 # 
-# Remember the two characteristics of an API:
-# 1. We can use the `lat=` and `lon=` parameters in the URL to request information
-# 2. The response is returned as plain text
+# Clicking on either of these links will show the response of the server. If you click the first link it will look something like this:
+# 
+# ![](https://i.imgur.com/CpzgsTo.png)
+# 
+# Not very readable for humans, but easily processed by a machine!
+# 
+# 
 
-# ###  Retrieve the rainradar information for a custom location using Python
+# ###  Task 1: get the current Bitcoin price
 
-# One of the big benefits of the `requests` library is that it makes it easy to pass parameters.  
-# See: http://docs.python-requests.org/en/master/user/quickstart/#passing-parameters-in-urls
+# As discussed above, we can retrieve the current Bitcoin price by "opening" the following URL:  
+# https://api.coindesk.com/v1/bpi/currentprice.json
+# 
+# Using the `requests` library we can easily "open" this url and retrieve the response.
 
-# In[9]:
+# In[15]:
 
-payload = {'lat' : 51.56, 'lon' : 5.09}
-res = requests.get('http://gps.buienradar.nl/getrr.php?', params=payload)
+res = requests.get('https://api.coindesk.com/v1/bpi/currentprice.json')
 
 
-# In[11]:
+# An important observation is that this API returns information in the so-called `JSON` format.  
+# 
+# You can learn more about the JSON format here: https://www.w3schools.com/js/js_json_syntax.asp.
+# 
+# We could, as before, return this results as plain text:
+
+# In[20]:
+
+text_res = res.text
+text_res
+
+
+# This is, however, not desirable because we want see the prices that we want but we have no way of easily and reliably extract these prices from the string.
+# 
+# We can, however, achieve this by telling `requests` that the response is in the JSON format:
+
+# In[19]:
+
+json_res = res.json()
+json_res
+
+
+# All that is left now is to extract the Bitcoin prices. This is now easy because `res.json()` returns a Python dictionary.
+
+# In[23]:
+
+json_res['bpi']['EUR']
+
+
+# In[24]:
+
+json_res['bpi']['EUR']['rate']
+
+
+# ### Task 2: write a function to retrieve historical Bitcoin prices
+
+# We can retrieve historical Bitcoin prices through the following API URL:  
+# https://api.coindesk.com/v1/bpi/historical/close.json
+# 
+# Looking at https://www.coindesk.com/api/ tells us that we can pass the following parameters to this URL:  
+# * `index` -> to specify the index
+# * `currency` -> to specify the currency 
+# * `start` -> to specify the start date of the interval
+# * `end` -> to specify the end date of the interval 
+# 
+# We are primarily interested in the `start` and `end` parameter.
+# 
+# As illustrated in the example, if we want to get the prices between 2013-09-01 and 2013-09-05 we would construct our URL as such:
+# 
+# https://api.coindesk.com/v1/bpi/historical/close.json?start=2013-09-01&end=2013-09-05
+# 
+# **But how do we do this using Python?**
+# 
+# Fortunately, the `requests` library makes it very easy to pass parameters to a URL as illustrated below.  
+# For more info, see: http://docs.python-requests.org/en/master/user/quickstart/#passing-parameters-in-urls
+
+# In[25]:
+
+API_endpoint = 'https://api.coindesk.com/v1/bpi/historical/close.json'
+payload = {'start' : '2013-09-01', 'end' : '2013-09-05'}
+
+
+# In[26]:
+
+res = requests.get(API_endpoint, params=payload)
+
+
+# We can print the resulting URL (for manual inspection for example) using `res.url`:
+
+# In[27]:
 
 print(res.url)
 
 
-# The response is in plain text. Notice the difference between:  
-# **Raw text:**
+# Again, the result is in the JSON format so we can easily process it:
 
-# In[12]:
+# In[30]:
 
-res.text
-
-
-# **Printed text:**
-
-# In[13]:
-
-print(res.text)
+bitcoin_2013 = res.json()
 
 
-# ### Wrap it into a function
+# In[33]:
 
-# If you repeat an operation many times (like requesting the rain data for many locations) it is often a good idea to create a function
-
-# In[14]:
-
-def get_rain_data(lat, lon):
-    payload = {'lat' : lat, 'lon' : lon}
-    res = requests.get('http://gps.buienradar.nl/getrr.php?', params=payload)
-    return res.text
+bitcoin_2013['bpi']
 
 
-# In[40]:
+# ### Wrap the above into a function
 
-rain_tilburg = get_rain_data(51.56, 5.09)
-rain_tilburg
+# In the example above we hardcode the parameter values (the interval dates), if we want to change the dates we have to manually alter the string values. This is not very convenient, it is easier to wrap everything into a function:
 
+# In[34]:
 
-# ### Parse a plain text response
+API_endpoint = 'https://api.coindesk.com/v1/bpi/historical/close.json'
 
-# Parsing, in simplified terms, means converting the raw file into something that our code can 'understand'.
-
-# In[41]:
-
-rain_tilburg = rain_tilburg.strip().split('\r\n')
-rain_tilburg[0:4]
-
-
-# In[43]:
-
-rain_tilburg = {x.split('|')[1] : int(x.split('|')[0]) / 255 for x in rain_tilburg}
+def get_bitcoin_prices(start_date, end_date, API_endpoint = API_endpoint):
+    payload = {'start' : start_date, 'end' : end_date}
+    res = requests.get(API_endpoint, params=payload)
+    json_res = res.json()
+    return json_res['bpi']
 
 
-# *Note:* The return value is between 0 (no rain) to 255 (heavy rain) so we divide by 255 to make it easier to interpret
+# In[35]:
 
-# In[44]:
-
-rain_tilburg['12:05']
+get_bitcoin_prices('2016-01-01', '2016-01-10')
 
 
-# **Note:** If the above gives an error, make sure to change it to a time that is actually included.
+# ## <u>Web scraping using Regular Expressions</u>
 
-# ### Parsing JSON
-
-# JSON is usually very easy to parse as it is a machine readible format to begin with.  
-# See for example http://docs.python-requests.org/en/master/user/quickstart/#json-response-content
-
-# ## Web scraping using Regular Expressions
+# Extracting information from webpages consists of four steps:
+# 1. Construct or retrieve the URL
+# 2. Have Python visit the URL and download the source of the page (often HTML)
+# 3. If needed, parse the source-file
+# 4. Extract the information you need
 
 # For very basic webscraping it is possible to use Regular Expression to select parts of an HTML page.  
 # **However, for most applications it is a lot better to use a module developed for parsing HTML, like Beautiful Soup.**
