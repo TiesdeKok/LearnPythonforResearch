@@ -33,7 +33,6 @@
 # https://automatetheboringstuff.com/chapter11/
 
 # ## <span style="text-decoration: underline;">Requests package</span>
-# 
 
 # We will use the `requests` module. I like the description mentioned in the book 'automate the boring stuff':
 # > The requests module lets you easily download files from the Web without having to worry about complicated issues such as network errors, connection problems, and data compression. The requests module doesn’t come with Python, so you’ll have to install it first. **From the command line, run:**   
@@ -76,7 +75,7 @@ requests.get('https://automatetheboringstuff.com/thisdoesnotexist.txt').status_c
 # You can find a list of most common HTTP Status Codes here:  
 # https://www.smartlabsoftware.com/ref/http-status-codes.htm
 
-# ## <u>Extract data using an API</u>
+# ## <span style="text-decoration: underline;">Extract data using an API</span>
 
 # APIs are designed to be approached and 'read' by computers, whereas regular webpages are designed for humans not computers.  
 # 
@@ -230,7 +229,7 @@ def get_bitcoin_prices(start_date, end_date, API_endpoint = API_endpoint):
 get_bitcoin_prices('2016-01-01', '2016-01-10')
 
 
-# ## <u>Web scraping using Regular Expressions</u>
+# ## <span style="text-decoration: underline;">Web scraping using Regular Expressions</span>
 
 # Extracting information from webpages consists of four steps:
 # 1. Construct or retrieve the URL
@@ -299,7 +298,7 @@ re.findall(r'<meta name="citation_title" content="(.*)">', html_text)[0]
 re.findall(r'<meta name="citation_online_date" content="(.*)">', html_text)[0]
 
 
-# ## Web scraping using BeautifulSoup
+# ## <span style="text-decoration: underline;">Extract data from a regular website by parsing it using LXML</span>
 
 # In the example above we treat a HTML page as-if it is plain text.  
 # However, HTML is a format in which we write web pages, so it actually has an underlying structure that we can use.
@@ -422,7 +421,9 @@ for x in all_bestsellers:
     print(x.attrs['title'])
 
 
-# ## Advanced webscraping using Scrapy
+# ## <span style="text-decoration: underline;">Extract data from Javascript heavy websites using Selenium</span>
+
+# ## <span style="text-decoration: underline;">Advanced webscraping using Scrapy</span>
 
 # In the examples above we provide the URLs in advance.  
 # Sometimes you want to create a `spider` which basically 'walks' through webpages and crawls the information.  

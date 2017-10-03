@@ -48,7 +48,7 @@
 # |<h2 style="text-align:center"> [Reshaping and Pivot Tables](#reshaping-pivot)  </h2>|
 # |<h2 style="text-align:center"> [Dealing with dates](#dates)    </h2>|
 
-# ## <u>Import Pandas</u><a name='import-pandas'></a> [(to top)](#toc)
+# ## <span style="text-decoration: underline;">Import Pandas</span><a name='import-pandas'></a> [(to top)](#toc)
 
 # In[1]:
 
@@ -75,7 +75,7 @@ from os.path import join
 data_path = join(os.getcwd(), 'example_data')
 
 
-# ##  <u>Create a dataframe</u><a name='create-dataframe'></a> [(to top)](#toc)
+# ##  <span style="text-decoration: underline;">Create a dataframe</span><a name='create-dataframe'></a> [(to top)](#toc)
 
 # We can create a dataframe in many ways. Below are a couple of situations:
 
@@ -117,7 +117,7 @@ df = pd.DataFrame.from_dict(d, orient='index')
 df
 
 
-# ## <u>Manipulate dataframe</u><a name='manipulate-dataframe'></a> [(to top)](#toc)
+# ## <span style="text-decoration: underline;">Manipulate dataframe</span><a name='manipulate-dataframe'></a> [(to top)](#toc)
 
 # ### Add column
 
@@ -186,7 +186,7 @@ df.set_index(0, append=True)
 df.reset_index()
 
 
-# ## <u>Rename columns</u><a name='rename-columns'></a> [(to top)](#toc)
+# ## <span style="text-decoration: underline;">Rename columns</span><a name='rename-columns'></a> [(to top)](#toc)
 
 # We can either manipulate `df.columns` directly or use `df.rename()`
 
@@ -211,7 +211,7 @@ df = df.rename(columns={'col1' : 'column1', 'col2' : 'column2'})
 df.rename(columns={'col1' : 'column1', 'col2' : 'column2'}, inplace=True)
 
 
-# ## <u>View a dataframe using `qgrid`</u><a name='qgrid'></a> [(to top)](#toc)
+# ## <span style="text-decoration: underline;">View a dataframe using `qgrid`</span><a name='qgrid'></a> [(to top)](#toc)
 
 # Something that requires getting used to is the fact that there is no build-in data browser for DataFrames.  
 # 
@@ -250,7 +250,7 @@ show_grid(df_auto)
 # - These `qgrids` will only display locally, not on GitHub. Therefore, if you see this on GitHub, you will not see the actual `qgrid`.
 # - There are a bunch of options you can use with `show_grid()`, you can for example add `show_toolbar=True`.
 
-# ## <u>View (parts) of a dataframe using `Pandas`</u><a name='view-dataframe'></a> [(to top)](#toc)
+# ## <span style="text-decoration: underline;">View (parts) of a dataframe using `Pandas`</span><a name='view-dataframe'></a> [(to top)](#toc)
 
 # Using `qgrid` is a good first start, but it is a very helpful skill to be able to sub-select parts of a dataframe (not only for inspection purposes but also for analysis, exporting parts of the data, and much more). 
 
@@ -395,7 +395,7 @@ df_auto.sort_values(by=['headroom', 'trunk'], inplace=True)
 df_auto.head()
 
 
-# ## <u>Dealing with datatypes</u><a name='datatypes'></a> [(to top)](#toc)
+# ## <span style="text-decoration: underline;">Dealing with datatypes</span><a name='datatypes'></a> [(to top)](#toc)
 
 # It is important to pay attention to the datatypes contained in a column. A lot of errors that you will encounter relate to wrong datatypes (e.g. because of data errors)
 
@@ -445,7 +445,7 @@ pd.to_numeric(df_auto['length']).dtypes
 
 # The section `dealing with dates` will discuss how to convert a column with `dates`.
 
-# ## <u>Handling missing values</u><a name='missing-values'></a> [(to top)](#toc)
+# ## <span style="text-decoration: underline;">Handling missing values</span><a name='missing-values'></a> [(to top)](#toc)
 
 # Dealing with missing values is easy in Pandas, as long as you are careful in defining them as `np.nan` (and **not** a string value like 'np.nan')
 
@@ -506,7 +506,7 @@ df = df_auto.dropna(axis=0)
 df['make'].tail(3)
 
 
-# ## <u>Work with data in the dataframe</u><a name='work-with-data'></a> [(to top)](#toc)
+# ## <span style="text-decoration: underline;">Work with data in the dataframe</span><a name='work-with-data'></a> [(to top)](#toc)
 
 # ### Combine columns (and output it to a new column)
 
@@ -575,7 +575,7 @@ df_auto[['make', 'price', 'foreign', 'new_price']].head()
 
 # *Note:* make sure to include the `axis = 1` argument, this tells Pandas to iterate over the rows and not the columns.
 
-# ## <u name='combining-dataframes'>Combining dataframes</u><a name='combining-dataframes'></a> [(to top)](#toc)
+# ## <span style="text-decoration: underline;">Combining dataframes</span><a name='combining-dataframes'></a> [(to top)](#toc)
 
 # You can combine dataframes in three ways:
 # 
@@ -664,7 +664,7 @@ pd.concat([df_auto_i1, df_auto_i2])
 df_auto_i1.append(df_auto_i2)
 
 
-# ## <u>Group-by operations</u><a name='groupby'></a> [(to top)](#toc)
+# ## <span style="text-decoration: underline;">Group-by operations</span><a name='groupby'></a> [(to top)](#toc)
 
 # Often you want to perform an operation within a group, in Pandas you achieve this by using `.groupby()`.
 # 
@@ -775,7 +775,7 @@ grouped.agg([np.sum, np.mean, np.std])
 # Feel free to check out the comprehensive documentation:  
 # https://pandas.pydata.org/pandas-docs/stable/groupby.html
 
-# ## <u>Reshaping and Pivot Tables</u><a name='reshaping-pivot'></a> [(to top)](#toc)
+# ## <span style="text-decoration: underline;">Reshaping and Pivot Tables</span><a name='reshaping-pivot'></a> [(to top)](#toc)
 
 # Pandas includes a variety of tools that allow you to reshape your DataFrame.  
 # These tools are very powerful but can be a bit confusing to use. 
@@ -875,7 +875,7 @@ df.unstack(level=['first'])
 df.unstack(level=['second'])
 
 
-# ## <u>Dealing with dates</u><a name='dates'></a> [(to top)](#toc)
+# ## <span style="text-decoration: underline;">Dealing with dates</span><a name='dates'></a> [(to top)](#toc)
 
 # Pandas has a lot of build-in functionality to deal with timeseries data  
 # http://pandas.pydata.org/pandas-docs/stable/timeseries.html
