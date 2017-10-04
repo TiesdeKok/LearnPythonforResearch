@@ -29,8 +29,13 @@
 # 5. Extract data from Javascript heavy websites using Selenium
 # 6. Advanced webscraping using Scrapy
 
-# **Note:** In this notebook I will often build upon chapter 11 of 'automate the boring stuff' which is available here:  
+# **Note 1:** In this notebook I will often build upon chapter 11 of 'automate the boring stuff' which is available here:  
 # https://automatetheboringstuff.com/chapter11/
+
+# **Note 2:** In this notebook I focus primarily on extracting information from webpages (i.e. `web scraping`) and very little on programming a bot to automatically traverse the web (i.e. `web crawling`).
+
+# **Note 3:** I recommend reading this blog post on the legality of web scraping/crawling:  
+# https://benbernardblog.com/web-scraping-and-crawling-are-perfectly-legal-right/
 
 # ## <span style="text-decoration: underline;">Requests package</span>
 
@@ -39,7 +44,7 @@
 # 
 # > `pip install requests`
 
-# In[2]:
+# In[1]:
 
 import requests
 
@@ -50,24 +55,24 @@ import requests
 
 # The `requests` package takes a URL and allows you to interact with the contents. For example:
 
-# In[4]:
+# In[2]:
 
 res = requests.get('https://automatetheboringstuff.com/files/rj.txt')
 
 
-# In[11]:
+# In[3]:
 
 print(res.text[7:250])
 
 
 # The `requests` package is incredibly useful because it deals with a lot of connection related issues automatically. We can for example check whether the webpage returned any errors relatively easily:
 
-# In[12]:
+# In[4]:
 
 res.status_code 
 
 
-# In[14]:
+# In[5]:
 
 requests.get('https://automatetheboringstuff.com/thisdoesnotexist.txt').status_code
 
@@ -118,7 +123,7 @@ requests.get('https://automatetheboringstuff.com/thisdoesnotexist.txt').status_c
 # 
 # Using the `requests` library we can easily "open" this url and retrieve the response.
 
-# In[15]:
+# In[6]:
 
 res = requests.get('https://api.coindesk.com/v1/bpi/currentprice.json')
 
@@ -129,7 +134,7 @@ res = requests.get('https://api.coindesk.com/v1/bpi/currentprice.json')
 # 
 # We could, as before, return this results as plain text:
 
-# In[20]:
+# In[7]:
 
 text_res = res.text
 text_res
@@ -139,7 +144,7 @@ text_res
 # 
 # We can, however, achieve this by telling `requests` that the response is in the JSON format:
 
-# In[19]:
+# In[8]:
 
 json_res = res.json()
 json_res
@@ -147,12 +152,12 @@ json_res
 
 # All that is left now is to extract the Bitcoin prices. This is now easy because `res.json()` returns a Python dictionary.
 
-# In[23]:
+# In[9]:
 
 json_res['bpi']['EUR']
 
 
-# In[24]:
+# In[10]:
 
 json_res['bpi']['EUR']['rate']
 
@@ -179,32 +184,32 @@ json_res['bpi']['EUR']['rate']
 # Fortunately, the `requests` library makes it very easy to pass parameters to a URL as illustrated below.  
 # For more info, see: http://docs.python-requests.org/en/master/user/quickstart/#passing-parameters-in-urls
 
-# In[25]:
+# In[11]:
 
 API_endpoint = 'https://api.coindesk.com/v1/bpi/historical/close.json'
 payload = {'start' : '2013-09-01', 'end' : '2013-09-05'}
 
 
-# In[26]:
+# In[12]:
 
 res = requests.get(API_endpoint, params=payload)
 
 
 # We can print the resulting URL (for manual inspection for example) using `res.url`:
 
-# In[27]:
+# In[13]:
 
 print(res.url)
 
 
 # Again, the result is in the JSON format so we can easily process it:
 
-# In[30]:
+# In[14]:
 
 bitcoin_2013 = res.json()
 
 
-# In[33]:
+# In[15]:
 
 bitcoin_2013['bpi']
 
@@ -213,7 +218,7 @@ bitcoin_2013['bpi']
 
 # In the example above we hardcode the parameter values (the interval dates), if we want to change the dates we have to manually alter the string values. This is not very convenient, it is easier to wrap everything into a function:
 
-# In[34]:
+# In[16]:
 
 API_endpoint = 'https://api.coindesk.com/v1/bpi/historical/close.json'
 
@@ -224,84 +229,96 @@ def get_bitcoin_prices(start_date, end_date, API_endpoint = API_endpoint):
     return json_res['bpi']
 
 
-# In[35]:
+# In[17]:
 
 get_bitcoin_prices('2016-01-01', '2016-01-10')
 
 
-# ## <span style="text-decoration: underline;">Web scraping using Regular Expressions</span>
+# ## <span style="text-decoration: underline;">Extract data from a regular website (i.e. webscraping)</span>
 
-# Extracting information from webpages consists of four steps:
+# In order to extract information from a regular webpage you first have to:  
 # 1. Construct or retrieve the URL
-# 2. Have Python visit the URL and download the source of the page (often HTML)
-# 3. If needed, parse the source-file
-# 4. Extract the information you need
-
-# For very basic webscraping it is possible to use Regular Expression to select parts of an HTML page.  
-# **However, for most applications it is a lot better to use a module developed for parsing HTML, like Beautiful Soup.**
-
-# ### The SSRN example
-
-# This is the method used in the example of the first session, where we retrieved information from an SSRN page.  
-# I will briefly repeat it:
+# 2. Retrieve page returned from URL and put it in memory (usually HTML)
 # 
-# The goal is to get the *title*, *author*, and *publication date* of a webpage:  
-# e.g. http://papers.ssrn.com/sol3/papers.cfm?abstract_id=2610429
+# **From here you have a choice:**
+#     
+# * Treat the HTML source as text and use regular expression to extract the information.
 # 
+#     *Or*  
+#     
+# 
+# * Process the HTML using LXML + and extract the information using the native HTML structure
+# 
+# I will discuss both methods below.  
+# 
+# Usually you want to go for the second option (LXML) as it is more robust and less prone to mistakes.  
+# I would only use the regular expression option if LXML doesn't work or if the task is very small.
 
-# In[51]:
+# ## <span style="text-decoration: underline;">Extract data from a regular website using regular expressions</span>
+
+# ### Regular expressions
+
+# Python has a native package to deal with regular expressions, you can import it as such:
+
+# In[18]:
 
 import re
 
 
-# In[45]:
+# ## Demonstration
 
-def get_ssrn_data(ID):
-    payload = {'abstract_id' : ID}
-    res = requests.get('http://papers.ssrn.com/sol3/papers.cfm?', params=payload)
-    return res.text
+# *Reminder:* You usually only want to use regular expressions if you want to do something quick-and-dirty, using LXML is nearly always a better solution!
 
+# Let's say our goal is to get the number of abstract views for a particular paper on SSRN:  
+# For example this one: https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1968579
 
-# In[55]:
+# ### Step 1: download the source of the page
 
-html_text = get_ssrn_data(2610429)
+# In[19]:
 
-
-# Now, this is the raw source text of an HTML page, so we need to parse it into something we can actually use
-
-# In[49]:
-
-html_text[:350]
+ssrn_url = r'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1968579'
+page_source = requests.get(ssrn_url)
 
 
-# In this example we will use the observation that some information is included in meta tags:
-#     ><title>Financial Accounting Research, Practice, and Financial Accountability by Mary E. Barth :: SSRN</title>
-#     
-#     <meta name="citation_author" content="Barth, Mary E.">
-#     <meta name="citation_title" content="Financial Accounting Research, Practice, and Financial Accountability">
-#     <meta name="citation_online_date" content="2015/05/26">
+# ### Step 2: convert source to a string (i.e. text)
 
-# This makes it relatively easy and consistent to extract this content using Regular Expressions:
+# *Note:* by doing so we essentially ignore the inherent structure of an HTML file, we just treat it as a very large string.
 
-# In[56]:
+# In[20]:
 
-re.findall(r'<meta name="citation_author" content="(.*)">', html_text)
+source_text = page_source.text
 
 
-# In[57]:
+# ### Step 3: use a regular expression to extract the number of views
 
-re.findall(r'<meta name="citation_title" content="(.*)">', html_text)[0]
+# Using the Chrome browser we can, for example, right click on the number and select 'inspect' to bring up this screen:
+
+# ![](https://i.imgur.com/NcClhwO.png)
+
+# Based on this we can construct a regular expression to capture the value that we want.  
+# Note, we have to account for any spaces, tabs, and newlines otherwise the regular expression will not capture what we want, this can be very tricky.  
+# 
+# Once we have identified the appropriate regular expression (it can help to use tools like www.pythex.org) we can use `re.findall()`:
+
+# In[26]:
+
+found_values = re.findall('Abstract Views</div>\r\n\t\t\t<div class="number" title="">(.*?)</div>', source_text)
+found_values
 
 
-# In[58]:
+# After cleaning the value up a bit (remove spaces and remove comma) we can convert the value to an integral so that Python handles it as a number:
 
-re.findall(r'<meta name="citation_online_date" content="(.*)">', html_text)[0]
+# In[32]:
 
+int(found_values[0].strip().replace(',', ''))
+
+
+# **As you can see, regular expression are rarely convenient for web scraping and if possible should be avoided!**
 
 # ## <span style="text-decoration: underline;">Extract data from a regular website by parsing it using LXML</span>
 
-# In the example above we treat a HTML page as-if it is plain text.  
-# However, HTML is a format in which we write web pages, so it actually has an underlying structure that we can use.
+# In the example above we treat a HTML page as plain-text and ignore the inherent format of HTML.  
+# A better alternative is to utilize the inherent structure of HTML to extract the information that we need. 
 
 # A quick refresher on HTML from 'automate the boring stuff':
 # 
@@ -310,26 +327,29 @@ re.findall(r'<meta name="citation_online_date" content="(.*)">', html_text)[0]
 #     <strong>Hello</strong> world!
 
 # You can view the HTML source by right-clicking a page and selecting `view page source`:
-
-# In[60]:
-
-Image('https://automatetheboringstuff.com/images/000009.jpg')
-
+# ![](https://automatetheboringstuff.com/images/000009.jpg)
 
 # ### Get started
 
-# We will use the so-called `BeautifulSoup` module to parse HTML pages, run from the command line:
+# We will use the so-called `LXML` module to parse HTML pages. You first need to install it using the command line:
 # 
-#     pip install beautifulsoup4
+#     pip install lxml
 #     
-# The module name itself is the abbrevation `bs4`
+# You can find the documentation for `LXML` here: http://lxml.de/
+#     
+# *Note:* an alternative to LXML is Beautifulsoup but nowadays (in my experience) it is better to use LXML.
 
-# In[61]:
+# In[33]:
 
-import bs4
+import lxml
 
 
-# ### Create a BeautifulSoup Object
+# ### Parse the HTML
+
+# In[ ]:
+
+
+
 
 # For this example we will follow 'automate the boring stuff' and retrieve data from:  
 # http://nostarch.com
