@@ -7,9 +7,8 @@
 **/desktop.ini
 
 !images/
-
-
 !example_data/
 
-
 !*.ipynb
+
+**/desktop.ini
