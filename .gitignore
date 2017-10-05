@@ -1,0 +1,15 @@
+/*
+!.gitignore
+
+**untitled*.py
+**untitled*.txt
+**/.ipynb_checkpoints
+**/desktop.ini
+
+!images/
+
+
+!example_data/
+
+
+!*.ipynb
