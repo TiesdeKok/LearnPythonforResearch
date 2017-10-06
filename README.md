@@ -1,5 +1,4 @@
 <h1 align="center">
-  <br>
    <img src="https://i.imgur.com/LZ4s3zS.png" alt="Python Accounting Research" title="Python Accounting Research GitHub" />
   <br>
 </h1>
