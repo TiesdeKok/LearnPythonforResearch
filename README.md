@@ -58,18 +58,18 @@ This repository is written to facilitate learning by doing
 If you are interested in web-scraping:
 
 7. Work through the [`4_web_scraping.ipynb`](4_web_scraping.ipynb) notebook
-8. Do the `Web scraping` part of the [`exercises.ipynb`](exercises.ipynb) notebook
+8. Do the "Web scraping" part of the [`exercises.ipynb`](exercises.ipynb) notebook
 
 **If you are already familiar with the Python basics:**
 
 Use the notebooks provided in this repository selectively depending on the types of problems that you try to solve with Python.
 
-Everything in the notebooks is purposely sectioned by the task description. So if you, for example, are looking on how to merge two Pandas dataframes together, you can use the `Combining dataframes` section of the [`2_handling_data.ipynb`](#) notebook as a great starting point. 
+Everything in the notebooks is purposely sectioned by the task description. So if you, for example, are looking to merge two Pandas dataframes together, you can use the `Combining dataframes` section of the [`2_handling_data.ipynb`](2_handling_data.ipynb) notebook as a starting point. 
 
 
 <h2 id="setup">Getting your Python setup ready</h2>
 
-There are multiple ways to setup your Python setup. To keep things simple I will only provide you with what I believe to be the best and easiest way to get started: download the Anaconda distribution. 
+There are multiple ways to get your Python environment set up. To keep things simple I will only provide you with what I believe to be the best and easiest way to get started: download the Anaconda distribution. 
 
 <h3 id="anaconda">Anaconda Distribution</h3>
 
@@ -84,7 +84,7 @@ By installing the Anaconda Distribution you essentially obtain everything you ne
  3. Install Anaconda. A couple of notes:
  	* For a first install, I recommend ticking the boxes to make it your primary installation and adding it to your path.
  	* It is worth to take note of the installation directory in case you ever need to find it again.
- 4. Check if the installation work by launching a command prompt (terminal) and type `python`, it should Anaconda at the top.
+ 4. Check if the installation works by launching a command prompt (terminal) and type `python`, it should say Anaconda at the top.
  	* On Windows I recommend using the `Anaconda Prompt` 
 
 *Note:* Anaconda also comes with the `Anaconda Explorer`, I haven't personally used it yet but it might be convenient. 
@@ -93,7 +93,7 @@ By installing the Anaconda Distribution you essentially obtain everything you ne
 
 Python 3.x is the newer and superior version over Python 2.7 so I strongly recommend to use Python 3.x (Python 3.6) whenever possible.
 
-The only reason to occasionaly use Python 2.7 would be if you are "forced" to (i.e. there is a package that you have to use but that is not yet updated to work with Python 3). In this unlikely scenario I would recommend to just install Python 2.7 alongside Python 3.6, and only use Python 2.7 when you really have to. 
+The only reason to occasionaly use Python 2.7 would be if you are "forced" to (i.e. there is a package that you have to use but that is not yet updated to work with Python 3). In this unlikely scenario I would recommend to just install Python 2.7 alongside Python 3.6, and only use Python 2.7 when you need to.
 
 <h2 id="usingpython">Using Python</h2>
 
@@ -108,7 +108,7 @@ Alternatively, you can run some quick code by starting a python or ipython inter
 <h3 id="jupyter">Jupyter Notebook</h3>
 
 The above is, however, not very convenient for research purposes as we desire easy interactivity and good documentation options.  
-Fortunately, the awesome **Jupyter Notebooks** provide a great alterantive way of using Python for research purposes. 
+Fortunately, the awesome **Jupyter Notebooks** provide a great alternative way of using Python for research purposes. 
 
 [Jupyter](http://jupyter.org/) comes pre-installed with the Anaconda distribution so you should have everything already installed and ready to go. 
 
@@ -137,7 +137,7 @@ The primary method that I would recommend to start a Jupyter Notebook is to use 
 2. `cd` (i.e. Change) to the desired starting directory   
    for example: `cd "C:\Files\Work\Project_1"`  
    *Note:* if you are changing do folder on another drive you might have to also switch drives by typing, for example, `E:` 
-4. Start the Jupyter Notebook server by typing: `jupyter notebook` 
+3. Start the Jupyter Notebook server by typing: `jupyter notebook` 
 
 This should automatically open up the corresponding Jupyter Notebook in your default browser.
 You can also manually go to the Jupyter Notebook by going to `localhost:8888` with your browser.
@@ -169,9 +169,9 @@ I recommend to watch this excellent YouTube video: [Awesome Data Science: 1.0 Ju
 <h3 id="packages">Installing Packages</h3>
 
 The Python eco-system consists of many packages and modules that people have programmed and made available for everyone to use.  
-These packages/modules are one of the things that makes Python so incredibly useful. 
+These packages/modules are one of the things that makes Python so useful. 
 
-Some packages are natively included with Python and Anaconda, but sometimes you need to install them first before you can import them.  
+Some packages are natively included with Python and Anaconda, but anything not included you need to install first before you can import them.  
 I will discuss the three primary methods of installing packages:
 
 **Method 1:** use `pip`
