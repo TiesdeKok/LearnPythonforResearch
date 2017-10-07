@@ -3,7 +3,6 @@ channels:
 - conda-forge
 - defaults
 dependencies:
-- _ipyw_jlab_nb_ext_conf=0.1.0=py36he6757f0_0
 - alabaster=0.7.10=py36hcd07829_0
 - anaconda=5.0.0=py36hea9b2fc_0
 - anaconda-client=1.6.5=py36hd36550c_0
