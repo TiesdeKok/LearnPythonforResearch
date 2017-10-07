@@ -27,7 +27,7 @@
   * [Code along](#codealong)
      * [Binder](#binder)
      * [Clone repository](#clonerepo)
-  * [Questions](#questions)
+  * [Questions?](#questions)
   * [License](#license)
   * [Special thanks](#specialthanks)
 
@@ -204,16 +204,15 @@ I will discuss the three primary methods of installing packages:
 
 This repository currently contains the follow elements:
 
-* `0_python_basics.ipynb`: Basics of the Python syntax
-* `1_opening_files.ipynb`: Examples on how to open Txt, CSV, Excel, Stata, Sas, JSON, and HDF files. 
-* `2_handling_data.ipynb`: A comprehensive overview on how to use the `Pandas` library for data wrangling.
-* `3_visualizing_data.ipynb`: Examples on how to generate visualizations with `Pandas`, `Seaborn`, and `Bokeh`.
-* `4_web_scraping.ipynb`: A comprehensive overview on how to use `Requests`, `LXML`, and `Selenium` for APIs and web scraping.
+* [`0_python_basics.ipynb`](0_python_basics.ipynb): Basics of the Python syntax
+* [`1_opening_files.ipynb`](1_opening_files.ipynb): Examples on how to open Txt, CSV, Excel, Stata, Sas, JSON, and HDF files. 
+* [`2_handling_data.ipynb`](2_handling_data.ipynb): A comprehensive overview on how to use the `Pandas` library for data wrangling.
+* [`3_visualizing_data.ipynb`](3_visualizing_data.ipynb): Examples on how to generate visualizations with `Pandas`, `Seaborn`, and `Bokeh`.
+* [`4_web_scraping.ipynb`](4_web_scraping.ipynb): A comprehensive overview on how to use `Requests`, `LXML`, and `Selenium` for APIs and web scraping.
 
 <h4 id="exercises">Exercises</h4>
 
-I have provided several tasks / exercises that you can try to solve in the `exercises.ipynb` notebook.
-
+I have provided several tasks / exercises that you can try to solve in the [`exercises.ipynb`](exercises.ipynb) notebook.
 
 <h2 id="codealong">Code along!</h2>
 
