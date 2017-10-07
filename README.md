@@ -2,9 +2,9 @@
    <img src="https://i.imgur.com/KZGIDj0.png" alt="Get started with Python for Research" title="Get started with Python for Research" />
 </h1>
 <p align="center">  
- <a href="https://gitter.im/TiesdeKok/PythonAccountingResearch"><img src="https://badges.gitter.im/array-mixer/Lobby.svg"></a>
+ <a href="https://gitter.im/TiesdeKok/PythonAccountingResearch"><img src="https://img.shields.io/gitter/room/nwjs/nw.js.svg"></a>
  <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-blue.svg"></a>
- <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=2UKM4JREAPTBG"><img src="https://img.shields.io/badge/Donate-PayPal-green.svg"></a>
+ <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=2UKM4JREAPTBG"><img src="https://img.shields.io/badge/Buy%20me%20a-coffee-yellow.svg"></a>
 </p>
 
 <p align="center">
@@ -48,7 +48,7 @@ This repository is written to facilitate learning by doing
 **If you are starting from scratch I recommend the following:**
 
 1. Familiarize yourself with the [`Getting your Python setup ready`](#setup) and [`Using Python`](#usingpython) sections below
-2. Check the [`Code along!`](#codealong) section to make sure that you can interactivly use the Jupyter Notebooks 
+2. Check the [`Code along!`](#codealong) section to make sure that you can interactively use the Jupyter Notebooks 
 3. Work through the [`0_python_basics.ipynb`](0_python_basics.ipynb) notebook and try to get a basics grasp on the Python syntax
 4. Do the "Basic Python tasks" part of the [`exercises.ipynb`](exercises.ipynb) notebook
 5. Work through the [`1_opening_files.ipynb`](#), [`2_handling_data.ipynb`](2_handling_data.ipynb), and [`3_visualizing_data.ipynb`](3_visualizing_data.ipynb) notebooks.  
@@ -93,7 +93,7 @@ By installing the Anaconda Distribution you essentially obtain everything you ne
 
 Python 3.x is the newer and superior version over Python 2.7 so I strongly recommend to use Python 3.x (Python 3.6) whenever possible.
 
-The only reason to occasionaly use Python 2.7 would be if you are "forced" to (i.e. there is a package that you have to use but that is not yet updated to work with Python 3). In this unlikely scenario I would recommend to just install Python 2.7 alongside Python 3.6, and only use Python 2.7 when you need to.
+The only reason to occasionally use Python 2.7 would be if you are "forced" to (i.e. there is a package that you have to use but that is not yet updated to work with Python 3). In this unlikely scenario I would recommend to just install Python 2.7 alongside Python 3.6, and only use Python 2.7 when you need to.
 
 <h2 id="usingpython">Using Python</h2>
 
@@ -125,7 +125,7 @@ The diagram below sums up the basics components of Jupyter:
 
 <img src="https://i.imgur.com/1zFzbyw.png" title="Jupyter Notebook" width = 400px/>
 
-At the heart there is the *Jupyter Server* that handles everything, the *Jupyter Notebook* which is accessed and used through your browser, and the *kernel* that executes the code. We will be focussing on the natively included *Python Kernel* but Jupyter is language agnostic so you can also use it with other languages/software such as 'R'.
+At the heart there is the *Jupyter Server* that handles everything, the *Jupyter Notebook* which is accessed and used through your browser, and the *kernel* that executes the code. We will be focusing on the natively included *Python Kernel* but Jupyter is language agnostic so you can also use it with other languages/software such as 'R'.
 
 It is worth noting that in most cases you will be running the `Jupyter Server` on your own computer and will connect to it locally in your browser (i.e. you don't need to be connected to the internet). However, it is also possible to run the Jupyter Server on a different computer, for example a high performance computation server in the cloud, and connect to it over the internet.
 
