@@ -35,17 +35,17 @@
 
 The goal of this GitHub page is to provide you with everything you need to get started with Python for actual research projects.   
 
-<h4 id="audience">Who is this repository for?</h4>
+<h3 id="audience">Who is this repository for?</h3>
 
 The topics and techniques demonstrated in this repository are primarily oriented towards empirical research projects in fields such as Accounting, Finance, Marketing, Political Science, and other Social Sciences. 
 
 However, many of the basics are also perfectly applicable if you are looking to use Python for any other type of Data Science!
 
-<h4 id="howtouse">How to use this repository?</h4>
+<h3 id="howtouse">How to use this repository?</h3>
 
-This repository is written to facilitate learning by doing. 
+This repository is written to facilitate learning by doing 
 
-<span style="text-decoration: underline"> If you are starting from scratch I recommend the following: </span>
+**If you are starting from scratch I recommend the following:**
 
 1. Familiarize yourself with the [`Getting your Python setup ready`](#setup) and [`Using Python`](#usingpython) sections below
 2. Check the [`Code along!`](#codealong) section to make sure that you can interactivly use the Jupyter Notebooks 
@@ -60,7 +60,7 @@ If you are interested in web-scraping:
 7. Work through the [`4_web_scraping.ipynb`](4_web_scraping.ipynb) notebook
 8. Do the `Web scraping` part of the [`exercises.ipynb`](exercises.ipynb) notebook
 
-<span style="text-decoration: underline"> If you are already familiar with the Python basics: </span>
+**If you are already familiar with the Python basics:**
 
 Use the notebooks provided in this repository selectively depending on the types of problems that you try to solve with Python.
 
@@ -71,13 +71,13 @@ Everything in the notebooks is purposely sectioned by the task description. So i
 
 There are multiple ways to setup your Python setup. To keep things simple I will only provide you with what I believe to be the best and easiest way to get started: download the Anaconda distribution. 
 
-<h4 id="anaconda">Anaconda Distribution</h4>
+<h3 id="anaconda">Anaconda Distribution</h3>
 
 The Anaconda Distribution bundles Python with a large collection of Python packages from the (data) science Python eco-system.  
 
 By installing the Anaconda Distribution you essentially obtain everything you need to get started with Python for Research!
 
-<h5 id="anacondainstall">Install Anaconda</h5>
+<h4 id="anacondainstall">Install Anaconda</h4>
 
  1. Go to [anaconda.com/download/](https://www.anaconda.com/download/) 
  2. Download the **Python 3.6 version** installer
@@ -89,7 +89,7 @@ By installing the Anaconda Distribution you essentially obtain everything you ne
 
 *Note:* Anaconda also comes with the `Anaconda Explorer`, I haven't personally used it yet but it might be convenient. 
 
-<h5 id="pythonversion">Python 3 vs Python 2?</h5>
+<h4 id="pythonversion">Python 3 vs Python 2?</h4>
 
 Python 3.x is the newer and superior version over Python 2.7 so I strongly recommend to use Python 3.x (Python 3.6) whenever possible.
 
@@ -98,13 +98,14 @@ The only reason to occasionaly use Python 2.7 would be if you are "forced" to (i
 <h2 id="usingpython">Using Python</h2>
 
 **Basic methods:**  
+
 The native way to run Python code is by saving the code to a file with the ".py" extension and executing it from the console / terminal:
 
 ```python code.py```
 
 Alternatively, you can run some quick code by starting a python or ipython interactive console by typing either `python` or `ipython` in your console / terminal.
 
-<h4 id="jupyter">Jupyter Notebook</h4>
+<h3 id="jupyter">Jupyter Notebook</h3>
 
 The above is, however, not very convenient for research purposes as we desire easy interactivity and good documentation options.  
 Fortunately, the awesome **Jupyter Notebooks** provide a great alterantive way of using Python for research purposes. 
@@ -165,7 +166,7 @@ I recommend to watch this excellent YouTube video: [Awesome Data Science: 1.0 Ju
 | `X`: cut selected cell |   
 
 
-<h4 id="packages">Installing Packages</h4>
+<h3 id="packages">Installing Packages</h3>
 
 The Python eco-system consists of many packages and modules that people have programmed and made available for everyone to use.  
 These packages/modules are one of the things that makes Python so incredibly useful. 
@@ -175,29 +176,29 @@ I will discuss the three primary methods of installing packages:
 
 **Method 1:** use `pip`
 
-Many packages are available on the "Python Package Index" (i.e. "PyPI"): [https://pypi.python.org/pypi](https://pypi.python.org/pypi)  
-
-You can install packages that are on "PyPI" by using the `pip` command:
-
-Example, install the `requests` package: run `pip install requests` in your command line / terminal (not in the Jupyter Notebook!).
-
-To uninstall you can use `pip uninstall` and to upgrade an existing package you can add the `-U` flag (`pip install -U requests`)
+> Many packages are available on the "Python Package Index" (i.e. "PyPI"): [https://pypi.python.org/pypi](https://pypi.python.org/pypi)  
+>
+> You can install packages that are on "PyPI" by using the `pip` command:
+>
+> Example, install the `requests` package: run `pip install requests` in your command line / terminal (not in the Jupyter Notebook!).
+>
+> To uninstall you can use `pip uninstall` and to upgrade an existing package you can add the `-U` flag (`pip install -U requests`)
 
 **Method 2:** use `conda`
 
-Sometimes when you try something with `pip` you get a compile error (especially on Windows). You can try to fix this by configuring the right compiler but most of the times it is easier to try to install it directly via Anaconda as these are pre-compiled. For example:
-
-`conda install scipy`
-
-Full documentation is here: [Conda documentation](https://conda.io/docs/user-guide/tasks/manage-pkgs.html)
+>Sometimes when you try something with `pip` you get a compile error (especially on Windows). You can try to fix this by configuring the right compiler but most of the times it is easier to try to install it directly via Anaconda as these are pre-compiled. For example:
+>
+>`conda install scipy`
+>
+>Full documentation is here: [Conda documentation](https://conda.io/docs/user-guide/tasks/manage-pkgs.html)
 
 **Method 3:** install directly using the `setup.py` file
 
-Sometimes a package is not on pypi and conda (you often find these packages on GitHub). Follow these steps to install those:
-
-1. Download the folder with all the files (if archived, make sure to unpack the folder)
-2. Open your command prompt (terminal) and `cd` to the folder you just downloaded
-3. Type: `python setup.py install`
+>Sometimes a package is not on pypi and conda (you often find these packages on GitHub). Follow these steps to install those:
+>
+>1. Download the folder with all the files (if archived, make sure to unpack the folder)
+>2. Open your command prompt (terminal) and `cd` to the folder you just downloaded
+>3. Type: `python setup.py install`
 
 <h2 id="notebooks">Tutorial Notebooks</h2>
 
@@ -218,11 +219,11 @@ I have provided several tasks / exercises that you can try to solve in the `exer
 
 You can code along in two ways:
 
-<span style='font-size : 15pt' id="binder"><strong>Option 1:</strong> use Binder</span>
+<h3><strong>Option 1:</strong> use Binder</h3>
 
 To be added. 
 
-<span style='font-size : 15pt' id="clonerepo"><strong>Option 2:</strong> clone repository</span>
+<h3><strong>Option 2:</strong> clone repository</h3>
 
 You can essentially "download" the contents of this repository by cloning the repository. 
 
