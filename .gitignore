@@ -11,5 +11,6 @@
 
 !*.ipynb
 !*.md
+!*.yml
 
 **/desktop.ini
