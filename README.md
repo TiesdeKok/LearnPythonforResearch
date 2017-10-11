@@ -2,9 +2,11 @@
    <img src="https://i.imgur.com/KZGIDj0.png" alt="Get started with Python for Research" title="Get started with Python for Research" />
 </h1>
 <p align="center">  
+ <a href="https://beta.mybinder.org/v2/gh/TiesdeKok/LearnPythonforResearch/master"><img src="https://img.shields.io/badge/launch-binder-pink.svg"></a>
  <a href="https://gitter.im/TiesdeKok/PythonAccountingResearch"><img src="https://img.shields.io/gitter/room/nwjs/nw.js.svg"></a>
  <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-blue.svg"></a>
- <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=2UKM4JREAPTBG"><img src="https://img.shields.io/badge/Buy%20me%20a-coffee-yellow.svg"></a>
+ <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=2UKM4JREAPTBG"><img src="https://img.shields.io/badge/buy%20me%20a-coffee-yellow.svg"></a>
+ 
 </p>
 
 <p align="center">
@@ -220,7 +222,14 @@ You can code along in two ways:
 
 <h3><strong>Option 1:</strong> use Binder</h3>
 
-To be added. 
+If you want to experiment with the code in a live environment you can also use `binder`.  
+
+Binder allows to create a live environment where you can execute code just as-if you were on your own computer based on a GitHub repository, it is very awesome!  
+
+Click on the button below to luanch binder:
+
+<a href="https://beta.mybinder.org/v2/gh/TiesdeKok/LearnPythonforResearch/master"><img src="https://img.shields.io/badge/launch-binder-pink.svg"></a>
+
 
 <h3><strong>Option 2:</strong> clone repository</h3>
 
