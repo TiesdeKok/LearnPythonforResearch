@@ -12,3 +12,7 @@ dependencies:
   - requests
   - lxml
   - cssselect
+  - xlrd
+  - openpyxel
+  - seaborn
+  
