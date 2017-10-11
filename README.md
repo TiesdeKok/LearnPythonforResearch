@@ -220,7 +220,7 @@ I have provided several tasks / exercises that you can try to solve in the [`exe
 
 You can code along in two ways:
 
-<h3><strong>Option 1:</strong> use Binder</h3>
+<h3 id="binder"><strong>Option 1:</strong> use Binder</h3>
 
 If you want to experiment with the code in a live environment you can also use `binder`.  
 
@@ -232,7 +232,7 @@ Click on the button below to luanch binder:
 
 **Note: you could use binder to complete the exercises but it will not save!!**
 
-<h3><strong>Option 2:</strong> clone repository</h3>
+<h3 id="clonerepo"><strong>Option 2:</strong> clone repository</h3>
 
 You can essentially "download" the contents of this repository by cloning the repository. 
 
