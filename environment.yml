@@ -1,0 +1,14 @@
+name: LearnPythonforResearch
+
+dependencies:
+  - python=3.6
+  - numpy
+  - pandas
+  - matplotlib
+  - bokeh
+  - deepdish
+  - qgrid
+  - ipywidgets
+  - requests
+  - lxml
+  - cssselect
