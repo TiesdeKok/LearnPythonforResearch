@@ -230,6 +230,7 @@ Click on the button below to luanch binder:
 
 <a href="https://beta.mybinder.org/v2/gh/TiesdeKok/LearnPythonforResearch/master"><img src="https://img.shields.io/badge/launch-binder-pink.svg"></a>
 
+**Note: you could use binder to complete the exercises but it will not save!!**
 
 <h3><strong>Option 2:</strong> clone repository</h3>
 
