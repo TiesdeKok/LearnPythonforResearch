@@ -62,6 +62,10 @@ If you are interested in web-scraping:
 7. Work through the [`4_web_scraping.ipynb`](4_web_scraping.ipynb) notebook
 8. Do the "Web scraping" part of the [`exercises.ipynb`](exercises.ipynb) notebook
 
+If you are interested in Natural Language Processing with Python:
+
+9. Take a look at my [Python NLP tutorial repository + notebook](https://github.com/TiesdeKok/Python_NLP_Tutorial)
+
 **If you are already familiar with the Python basics:**
 
 Use the notebooks provided in this repository selectively depending on the types of problems that you try to solve with Python.
@@ -212,9 +216,15 @@ This repository currently contains the follow elements:
 * [`3_visualizing_data.ipynb`](3_visualizing_data.ipynb): Examples on how to generate visualizations with `Pandas`, `Seaborn`, and `Bokeh`.
 * [`4_web_scraping.ipynb`](4_web_scraping.ipynb): A comprehensive overview on how to use `Requests`, `LXML`, and `Selenium` for APIs and web scraping.
 
+Additionally, if you are interested in Natural Language Processing I have a notebook for that as well:
+* [`NLP_Notebook`](https://nbviewer.jupyter.org/github/TiesdeKok/Python_NLP_Tutorial/blob/master/NLP_Notebook.ipynb): Basics of the Python syntax
+
 <h4 id="exercises">Exercises</h4>
 
 I have provided several tasks / exercises that you can try to solve in the [`exercises.ipynb`](exercises.ipynb) notebook.
+
+**Note:** To avoid the "oh, that looks easy!" trap I have not uploaded the exercises notebook with examples answers.   
+*If you want it shoot me an e-mail.*
 
 <h2 id="codealong">Code along!</h2>
 
@@ -226,7 +236,7 @@ If you want to experiment with the code in a live environment you can also use `
 
 Binder allows to create a live environment where you can execute code just as-if you were on your own computer based on a GitHub repository, it is very awesome!  
 
-Click on the button below to luanch binder:
+Click on the button below to launch binder:
 
 <a href="https://beta.mybinder.org/v2/gh/TiesdeKok/LearnPythonforResearch/master"><img src="https://img.shields.io/badge/launch-binder-pink.svg"></a>
 
@@ -248,7 +258,7 @@ If you have questions or experience problems please use the `issues` tab of this
 
 <h2 id="license">License</h2>
 
-[MIT](LICENSE) - Ties de Kok - 2017
+[MIT](LICENSE) - Ties de Kok - 2018
 
 <h2 id="specialthanks">Special Thanks</h2>
 
