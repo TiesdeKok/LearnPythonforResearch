@@ -13,4 +13,7 @@
 !*.md
 !*.yml
 
+exercises_answers.ipynb
+sandbox.ipynb
+
 **/desktop.ini
