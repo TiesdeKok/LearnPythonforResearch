@@ -1,19 +1,26 @@
 name: LearnPythonforResearch
-
+channels:
+  - conda-forge
+  - defaults
 dependencies:
-  - python=3.6
+  - python=3.7
+  - jupyterlab
   - numpy
   - pandas
   - matplotlib
-  - bokeh
-  - deepdish
-  - qgrid
   - ipywidgets
   - requests
-  - lxml
-  - cssselect
   - xlrd
   - openpyxl
   - seaborn
+  - bokeh
+  - hickle
+  - lxml
+  - cssselect
+  - PyTables
+  - plotnine
+  - plotly
+  - selenium
   - pip:
+    - qgrid
     - requests-html
