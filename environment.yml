@@ -4,6 +4,7 @@ channels:
   - defaults
 dependencies:
   - python=3.7
+  - pip
   - jupyterlab
   - numpy
   - pandas
@@ -21,6 +22,7 @@ dependencies:
   - plotnine
   - plotly
   - selenium
+  - tqdm
   - pip:
     - qgrid
     - requests-html

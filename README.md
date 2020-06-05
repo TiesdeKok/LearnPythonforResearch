@@ -2,17 +2,17 @@
    <img src="https://i.imgur.com/KZGIDj0.png" alt="Get started with Python for Research" title="Get started with Python for Research" />
 </h1>
 <p align="center">  
- <a href="https://beta.mybinder.org/v2/gh/TiesdeKok/LearnPythonforResearch/master"><img src="https://img.shields.io/badge/launch-binder-pink.svg"></a>
- <a href="https://gitter.im/TiesdeKok/PythonAccountingResearch"><img src="https://img.shields.io/gitter/room/nwjs/nw.js.svg"></a>
+ <a href="https://mybinder.org/v2/gh/TiesdeKok/LearnPythonforResearch/master?urlpath=lab"><img src="https://mybinder.org/badge_logo.svg"></a>
  <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-blue.svg"></a>
  <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=2UKM4JREAPTBG"><img src="https://img.shields.io/badge/buy%20me%20a-coffee-yellow.svg"></a>
+  <img src="https://img.shields.io/badge/last%20updated-June%202020-3d62d1">
  
 </p>
 
 <p align="center">
-  Want to learn how to use <strong>Python for (Accounting) Research</strong>? <br>
+  Want to learn how to use <strong>Python for (Social Science) Research</strong>? <br>
   This repository has everything that you need to get started! <br><br>
-  <span style='font-size: 15pt'><strong>Author:</strong> Ties de Kok (<a href="http://www.TiesdeKok.com">Personal Page</a>)</span>
+  <span style='font-size: 15pt'><strong>Author:</strong> Ties de Kok (<a href="https://www.TiesdeKok.com">Personal Page</a>)</span>
 </p>
 
 ## Table of contents
@@ -75,7 +75,7 @@ Everything in the notebooks is purposely sectioned by the task description. So i
 
 <h2 id="setup">Getting your Python setup ready</h2>
 
-There are multiple ways to get your Python environment set up. To keep things simple I will only provide you with what I believe to be the best and easiest way to get started: download the Anaconda distribution. 
+There are multiple ways to get your Python environment set up. To keep things simple I will only provide you with what I believe to be the best and easiest way to get started: the Anaconda distribution + a conda environment. 
 
 <h3 id="anaconda">Anaconda Distribution</h3>
 
@@ -83,23 +83,31 @@ The Anaconda Distribution bundles Python with a large collection of Python packa
 
 By installing the Anaconda Distribution you essentially obtain everything you need to get started with Python for Research!
 
-<h4 id="anacondainstall">Install Anaconda</h4>
+<h4 id="anacondainstall">Step 1: Install Anaconda</h4>
 
  1. Go to [anaconda.com/download/](https://www.anaconda.com/download/) 
- 2. Download the **Python 3.6 version** installer
- 3. Install Anaconda. A couple of notes:
- 	* For a first install, I recommend ticking the boxes to make it your primary installation and adding it to your path.
+ 2. Download the **Python 3.x version** installer
+ 3. Install Anaconda. 
  	* It is worth to take note of the installation directory in case you ever need to find it again.
  4. Check if the installation works by launching a command prompt (terminal) and type `python`, it should say Anaconda at the top.
  	* On Windows I recommend using the `Anaconda Prompt` 
 
 *Note:* Anaconda also comes with the `Anaconda Explorer`, I haven't personally used it yet but it might be convenient. 
 
+<h4 id="anacondainstall">Step 2: Set up the <i>learnpythonforresearch</i> environment</h4>
+
+1. Make sure you've cloned/downloaded this repository: [Clone repository](#clonerepo)
+2. `cd` (i.e. Change) to the folder where you extracted the ZIP file   
+   for example: `cd "C:\Files\Work\Project_1"`  
+   *Note:* if you are changing do folder on another drive you might have to also switch drives by typing, for example, `E:` 
+3. Run the following command `conda env create -f environment.yml`  
+4. Activate the environment with: `conda activate LearnPythonforResearch`
+
+A full list of all the packages used is provided in the `environment.yml` file. 
+
 <h4 id="pythonversion">Python 3 vs Python 2?</h4>
 
-Python 3.x is the newer and superior version over Python 2.7 so I strongly recommend to use Python 3.x (Python 3.6) whenever possible.
-
-The only reason to occasionally use Python 2.7 would be if you are "forced" to (i.e. there is a package that you have to use but that is not yet updated to work with Python 3). In this unlikely scenario I would recommend to just install Python 2.7 alongside Python 3.6, and only use Python 2.7 when you need to.
+Python 3.x is the newer and superior version over Python 2.7 so I strongly recommend to use Python 3.x whenever possible. There is no reason to use Python 2.7, unless you are forced to work with old Python 2.7 code. 
 
 <h2 id="usingpython">Using Python</h2>
 
@@ -111,12 +119,19 @@ The native way to run Python code is by saving the code to a file with the ".py"
 
 Alternatively, you can run some quick code by starting a python or ipython interactive console by typing either `python` or `ipython` in your console / terminal.
 
-<h3 id="jupyter">Jupyter Notebook</h3>
+<h3 id="jupyter">Jupyter Notebook/Lab</h3>
 
 The above is, however, not very convenient for research purposes as we desire easy interactivity and good documentation options.  
 Fortunately, the awesome **Jupyter Notebooks** provide a great alternative way of using Python for research purposes. 
 
 [Jupyter](http://jupyter.org/) comes pre-installed with the Anaconda distribution so you should have everything already installed and ready to go. 
+
+***Note on Jupyter Lab***
+
+> **JupyterLab 1.0: Jupyter’s Next-Generation Notebook Interface**   
+JupyterLab is a web-based interactive development environment for Jupyter notebooks, code, and data. JupyterLab is flexible: configure and arrange the user interface to support a wide range of workflows in data science, scientific computing, and machine learning. JupyterLab is extensible and modular: write plugins that add new components and integrate with existing ones.
+
+Jupyter Lab is an additional interface layer that extends the functionality of Jupyter Notebooks which are the primary way you interact with Python code. 
 
 ***What is the Jupyter Notebook?***
 
@@ -125,7 +140,7 @@ From the [Jupyter](http://jupyter.org/) website:
 
 In other words, the Jupyter Notebook allows you to program Python code straight from your browser!
 
-***How does the Jupyter Notebook work in the background?***
+***How does the Jupyter Notebook/Lab work in the background?***
 
 The diagram below sums up the basics components of Jupyter:
 
@@ -135,28 +150,26 @@ At the heart there is the *Jupyter Server* that handles everything, the *Jupyter
 
 It is worth noting that in most cases you will be running the `Jupyter Server` on your own computer and will connect to it locally in your browser (i.e. you don't need to be connected to the internet). However, it is also possible to run the Jupyter Server on a different computer, for example a high performance computation server in the cloud, and connect to it over the internet.
 
-***How to start a Jupyter Notebook?***
+***How to start a Jupyter Notebook/Lab?***
 
-The primary method that I would recommend to start a Jupyter Notebook is to use the command line (terminal) directly:
+The primary method that I would recommend to start a Jupyter Notebook/Lab is to use the command line (terminal) directly:
 
 1. Open your command prompt / terminal (on Windows I recommend the Anaconda Prompt)
+2. Activate the right environment with `conda activate LearnPythonForResearch`
 2. `cd` (i.e. Change) to the desired starting directory   
    for example: `cd "C:\Files\Work\Project_1"`  
    *Note:* if you are changing do folder on another drive you might have to also switch drives by typing, for example, `E:` 
-3. Start the Jupyter Notebook server by typing: `jupyter notebook` 
+3. Start the Jupyter Notebook/Lab server by typing: `jupyter notebook` or `jupyter lab`
 
-This should automatically open up the corresponding Jupyter Notebook in your default browser.
-You can also manually go to the Jupyter Notebook by going to `localhost:8888` with your browser.
+This should automatically open up the corresponding Jupyter Notebook/Lab in your default browser.
+You can also manually go to the Jupyter Notebook/Lab by going to `localhost:8888` with your browser. (You might be asked for a password, which can find in the terminal window where there Jupyter server is running.)
 
-***How to close a Jupyter Notebook server?***
+***How to close a Jupyter Server erver?***
 
 If you want to close down the Jupyter Server: open up the command prompt window that runs the server and press `CTRL + C` twice.   
 Make sure that you have saved any open Jupyter Notebooks!
 
 ***How to use the Jupyter Notebook?***
-
-I recommend to watch this excellent YouTube video: [Awesome Data Science: 1.0 Jupyter Notebook Tour
-](https://www.youtube.com/watch?v=e9cSF3eVQv0)
 
 *Some shortcuts are worth mentioning for reference purposes:*
 
