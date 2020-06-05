@@ -13,6 +13,8 @@
 !*.md
 !*.yml
 
+!postBuild
+
 exercises_answers.ipynb
 sandbox.ipynb
 
