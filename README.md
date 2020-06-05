@@ -21,14 +21,16 @@
   	* [Who is this repository for?](#audience)
   	* [How to use this repository?](#howtouse)
   * [Getting your Python setup ready](#setup)
+      * [Installing Anaconda](#anacondainstall)
+      * [Setting up Conda Environment](#setupenv)
   * [Using Python](#usingpython)
-  	 * [Jupyter Notebook](#jupyter)
+  	 * [Jupyter Notebook/Lab](#jupyter)
   	 * [Installing packages](#packages)
   * [Tutorial Notebooks](#notebooks)
   	* [Exercises](#exercises)
   * [Code along](#codealong)
      * [Binder](#binder)
-     * [Clone repository](#clonerepo)
+     * [Local installation](#clonerepo)
   * [Questions?](#questions)
   * [License](#license)
   * [Special thanks](#specialthanks)
@@ -94,7 +96,7 @@ By installing the Anaconda Distribution you essentially obtain everything you ne
 
 *Note:* Anaconda also comes with the `Anaconda Explorer`, I haven't personally used it yet but it might be convenient. 
 
-<h4 id="anacondainstall">Step 2: Set up the <i>learnpythonforresearch</i> environment</h4>
+<h4 id="setupenv">Step 2: Set up the <i>learnpythonforresearch</i> environment</h4>
 
 1. Make sure you've cloned/downloaded this repository: [Clone repository](#clonerepo)
 2. `cd` (i.e. Change) to the folder where you extracted the ZIP file   
@@ -221,13 +223,13 @@ I will discuss the three primary methods of installing packages:
 
 <h2 id="notebooks">Tutorial Notebooks</h2>
 
-This repository currently contains the follow elements:
+This repository covers the following topics:  
 
 * [`0_python_basics.ipynb`](0_python_basics.ipynb): Basics of the Python syntax
-* [`1_opening_files.ipynb`](1_opening_files.ipynb): Examples on how to open Txt, CSV, Excel, Stata, Sas, JSON, and HDF files. 
+* [`1_opening_files.ipynb`](1_opening_files.ipynb): Examples on how to open TXT, CSV, Excel, Stata, Sas, JSON, and HDF files. 
 * [`2_handling_data.ipynb`](2_handling_data.ipynb): A comprehensive overview on how to use the `Pandas` library for data wrangling.
-* [`3_visualizing_data.ipynb`](3_visualizing_data.ipynb): Examples on how to generate visualizations with `Pandas`, `Seaborn`, and `Bokeh`.
-* [`4_web_scraping.ipynb`](4_web_scraping.ipynb): A comprehensive overview on how to use `Requests`, `LXML`, and `Selenium` for APIs and web scraping.
+* [`3_visualizing_data.ipynb`](3_visualizing_data.ipynb): Examples on how to generate visualizations with Python.
+* [`4_web_scraping.ipynb`](4_web_scraping.ipynb): A comprehensive overview on how to use `Requests`, `Requests-html`, and `Selenium` for APIs and web scraping.
 
 Additionally, if you are interested in Natural Language Processing I have a notebook for that as well:
 * [`NLP_Notebook`](https://nbviewer.jupyter.org/github/TiesdeKok/Python_NLP_Tutorial/blob/master/NLP_Notebook.ipynb): Basics of the Python syntax
@@ -237,7 +239,7 @@ Additionally, if you are interested in Natural Language Processing I have a note
 I have provided several tasks / exercises that you can try to solve in the [`exercises.ipynb`](exercises.ipynb) notebook.
 
 **Note:** To avoid the "oh, that looks easy!" trap I have not uploaded the exercises notebook with examples answers.   
-*If you want it shoot me an e-mail.*
+*Feel free to email me for the answer keys once you are done!*
 
 <h2 id="codealong">Code along!</h2>
 
@@ -251,11 +253,11 @@ Binder allows to create a live environment where you can execute code just as-if
 
 Click on the button below to launch binder:
 
-<a href="https://beta.mybinder.org/v2/gh/TiesdeKok/LearnPythonforResearch/master"><img src="https://img.shields.io/badge/launch-binder-pink.svg"></a>
+ <a href="https://mybinder.org/v2/gh/TiesdeKok/LearnPythonforResearch/master?urlpath=lab"><img src="https://mybinder.org/badge_logo.svg"></a>
 
 **Note: you could use binder to complete the exercises but it will not save!!**
 
-<h3 id="clonerepo"><strong>Option 2:</strong> clone repository</h3>
+<h3 id="clonerepo"><strong>Option 2:</strong> Set up local Python setup</h3>
 
 You can essentially "download" the contents of this repository by cloning the repository. 
 
@@ -263,7 +265,10 @@ You can do this by clicking "Clone or download" button and then "Download ZIP":
 
 <img src="https://i.imgur.com/Ysak4s3.png" title="Jupyter Notebook" width = 300px/>
 
-If you extract the downloaded ZIP to a folder you can start the Jupyter Notebook in that folder and access the notebooks.
+After you download and extracted the zip file into a folder you can follow the steps to set up your environment: 
+
+1. [Installing Anaconda](#anacondainstall)   
+2. [Setting up Conda Environment](#setupenv)
 
 <h2 id="questions">Questions?</h2>
 
@@ -271,7 +276,7 @@ If you have questions or experience problems please use the `issues` tab of this
 
 <h2 id="license">License</h2>
 
-[MIT](LICENSE) - Ties de Kok - 2018
+[MIT](LICENSE) - Ties de Kok - 2020
 
 <h2 id="specialthanks">Special Thanks</h2>
 
