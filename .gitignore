@@ -15,6 +15,7 @@
 
 !postBuild
 
+exercises.ipynb
 exercises_answers.ipynb
 sandbox.ipynb
 
